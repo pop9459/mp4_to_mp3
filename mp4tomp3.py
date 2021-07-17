@@ -56,7 +56,10 @@ def main(indir, outdir):
         print("-- converting {0}/{2}.mp4 to {1}/{2}.mp3 --".format(indir, outdir, filename))
         call(["mplayer", "-novideo", "-nocorrect-pts", "-ao", "pcm:waveheader", indir + "/" + filename + ".mp4"])
         call(["lame", "-v", "audiodump.wav", outdir + "/" + filename + ".mp3"])
-        os.remove("audiodump.wav")
+        try:
+            os.remove("audiodump.wav")
+        except:
+            pass
 
 # set the default directories and try to get input directories
 args = [".", "."]
